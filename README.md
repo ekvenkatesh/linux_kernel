@@ -1,10 +1,6 @@
 # linux_kernel
 Pet projects on linux kernel
 
-Prioritized Memory Access
-==========================
-Developed for a course project at IIT Bombay. Details below:
-
 Memory Allocation based on Process Priority
 ===========================================
 The aim of this project is to control the amount of physical memory allocated to a process according
