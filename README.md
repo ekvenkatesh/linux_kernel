@@ -5,7 +5,7 @@ Prioritized Memory Access
 ==========================
 Developed for a course project at IIT Bombay. Details below:
 
-Objective: Extend the notion of prioroty of a process across memory and IO.
+Objective: Extend the notion of prioroty of a process for memory.
 
 Details: The futuristic goal of this project is to have a mode based operation of the kernel. Applications are
 categorized as belonging to one mode amongst a set of modes (gaming, entertainment, work etc.).
