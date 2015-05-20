@@ -5,26 +5,26 @@ Prioritized Memory Access
 ==========================
 Developed for a course project at IIT Bombay. Details below:
 
-Objective: Extend the notion of prioroty of a process for memory.
+Memory Allocation based on Process Priority
+===========================================
+The aim of this project is to control the amount of physical memory allocated to a process according
+to its priority. The notion of priority of a process is already used in CPU and IO scheduling to
+decide how much of the resource (i.e., time) the process is allowed to use. I extend this notion onto
+physical memory allocation.
 
-Details: The futuristic goal of this project is to have a mode based operation of the kernel. Applications are
+When the system is operating on low load, processes get as much memory as needed. However,
+when there are multiple processes competing for memory, pages have to be swapped in and out of
+the physical memory. This affects the performance of the process. In such a scenario, I allow a
+particular process (set of processes) which is (are) considered “high priority” to retain all their
+pages without any pages getting swapped out. This will boost the performance of that process
+(obviously, at the cost of another less priority process).
+
+The futuristic goal of this project is to have a mode based operation of the kernel. Applications are
 categorized as belonging to one mode amongst a set of modes (gaming, entertainment, work etc.).
-Depending on the selected mode, the particular set of applications is allowed prioritized access to
+Depending on the selected mode, the particular set of applications is given prioritized access to
 resources.
 
 For example, when I want to study, I will set the mode to “work”. The OS will automatically
 prioritize work related applications (which will be specified by me apriori, like, Browser, Eclipse
 IDE, LibreOffice Writer etc). Even if a batch application is running in the background (such as the
-download of a movie which I want to watch later, that application will be deprioritized).
-Given a set of processes (pid's), with priorities, ensure that these processes get a chunk of the
-resources (memory, IO time) irrespective of load of the system.
-
-Approach: I now give details of how to prioritize memory for a single process P. The high level idea is to
-identify and control when pages of this process get evicted from the memory.
-Our approach is to hack what pages from the LRU list are selected for eviction (there is a function
-page_evictable which is called to decide whether or not to evict a page, we hack here) and make
-sure that none of the pages belonging to our prioritized process are selected, unless the upper limit
-for memory allocated to the process is reached. This can be known through RSS.
-
-The main function which is called to decide whether or not a page is evictable is page_evictable
-from vmscan.c. We place a hook inside this function and return false whenever the particular pagebelongs to our process.
+download of a movie which I want to watch later), that application will be deprioritized. 
