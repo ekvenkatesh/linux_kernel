@@ -1,0 +1,402 @@
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/drivers/lguest/page_tables.c linux-vanilla/drivers/lguest/page_tables.c
+*** linux-3.18.1/drivers/lguest/page_tables.c	2015-04-24 00:49:19.827507325 +0530
+--- linux-vanilla/drivers/lguest/page_tables.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 771,777 ****
+  			/* Create a read-only, exectuable, kernel-style PTE */
+  			set_pte(pte,
+  				mk_pte(lg_switcher_pages[0], PAGE_KERNEL_RX));
+- 			lg_switcher_pages[0]->tsk = current;
+  		}
+  	}
+  	cpu->lg->pgdirs[cpu->cpu_pgd].switcher_mapped = true;
+--- 771,776 ----
+***************
+*** 1167,1173 ****
+  	regs_page = pfn_to_page(__pa(cpu->regs_page) >> PAGE_SHIFT);
+  	get_page(regs_page);
+  	set_pte(pte, mk_pte(regs_page, __pgprot(__PAGE_KERNEL & ~_PAGE_GLOBAL)));
+! 	regs_page->tsk = current;
+  	/*
+  	 * We map the second page of the struct lguest_pages read-only in
+  	 * the Guest: the IDT, GDT and other things it's not supposed to
+--- 1166,1172 ----
+  	regs_page = pfn_to_page(__pa(cpu->regs_page) >> PAGE_SHIFT);
+  	get_page(regs_page);
+  	set_pte(pte, mk_pte(regs_page, __pgprot(__PAGE_KERNEL & ~_PAGE_GLOBAL)));
+! 
+  	/*
+  	 * We map the second page of the struct lguest_pages read-only in
+  	 * the Guest: the IDT, GDT and other things it's not supposed to
+***************
+*** 1179,1185 ****
+  	get_page(percpu_switcher_page);
+  	set_pte(pte, mk_pte(percpu_switcher_page,
+  			    __pgprot(__PAGE_KERNEL_RO & ~_PAGE_GLOBAL)));
+- 	percpu_switcher_page->tsk = current;
+  
+  	pgdir->last_host_cpu = raw_smp_processor_id();
+  }
+--- 1178,1183 ----
+Only in linux-3.18.1/drivers/tty/vt: consolemap_deftbl.c
+Only in linux-3.18.1/drivers/tty/vt: defkeymap.c
+Only in linux-3.18.1/drivers/video/logo: clut_vga16.c
+Only in linux-3.18.1/drivers/video/logo: .clut_vga16.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_blackfin_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_blackfin_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_blackfin_vga16.c
+Only in linux-3.18.1/drivers/video/logo: .logo_blackfin_vga16.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_dec_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_dec_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_linux_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_linux_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_linux_mono.c
+Only in linux-3.18.1/drivers/video/logo: .logo_linux_mono.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_linux_vga16.c
+Only in linux-3.18.1/drivers/video/logo: .logo_linux_vga16.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_m32r_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_m32r_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_mac_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_mac_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_parisc_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_parisc_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_sgi_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_sgi_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_spe_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_spe_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_sun_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_sun_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_superh_clut224.c
+Only in linux-3.18.1/drivers/video/logo: .logo_superh_clut224.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_superh_mono.c
+Only in linux-3.18.1/drivers/video/logo: .logo_superh_mono.c.cmd
+Only in linux-3.18.1/drivers/video/logo: logo_superh_vga16.c
+Only in linux-3.18.1/drivers/video/logo: .logo_superh_vga16.c.cmd
+Only in linux-3.18.1/firmware/e100: d101m_ucode.bin
+Only in linux-3.18.1/firmware/e100: d101m_ucode.bin.gen.S
+Only in linux-3.18.1/firmware/e100: d101s_ucode.bin
+Only in linux-3.18.1/firmware/e100: d101s_ucode.bin.gen.S
+Only in linux-3.18.1/firmware/e100: d102e_ucode.bin
+Only in linux-3.18.1/firmware/e100: d102e_ucode.bin.gen.S
+Only in linux-3.18.1/firmware/tigon: tg3.bin
+Only in linux-3.18.1/firmware/tigon: tg3.bin.gen.S
+Only in linux-3.18.1/firmware/tigon: tg3_tso5.bin
+Only in linux-3.18.1/firmware/tigon: tg3_tso5.bin.gen.S
+Only in linux-3.18.1/firmware/tigon: tg3_tso.bin
+Only in linux-3.18.1/firmware/tigon: tg3_tso.bin.gen.S
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/include/asm-generic/hugetlb.h linux-vanilla/include/asm-generic/hugetlb.h
+*** linux-3.18.1/include/asm-generic/hugetlb.h	2015-04-24 00:50:36.807507893 +0530
+--- linux-vanilla/include/asm-generic/hugetlb.h	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 4,10 ****
+  static inline pte_t mk_huge_pte(struct page *page, pgprot_t pgprot)
+  {
+  	return mk_pte(page, pgprot);
+- 	page->tsk = current;
+  }
+  
+  static inline unsigned long huge_pte_write(pte_t pte)
+--- 4,9 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/include/linux/mm_types.h linux-vanilla/include/linux/mm_types.h
+*** linux-3.18.1/include/linux/mm_types.h	2015-05-01 19:46:15.808398513 +0530
+--- linux-vanilla/include/linux/mm_types.h	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 196,203 ****
+  #ifdef LAST_CPUPID_NOT_IN_PAGE_FLAGS
+  	int _last_cpupid;
+  #endif
+- 
+- 	struct task_struct* tsk; /* for identifying process' page during eviction */
+  }
+  /*
+   * The struct page can be forced to be double word aligned so that atomic ops
+--- 196,201 ----
+Only in linux-3.18.1/kernel: bounds.s
+Only in linux-3.18.1/kernel: .bounds.s.cmd
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/kernel/events/uprobes.c linux-vanilla/kernel/events/uprobes.c
+*** linux-3.18.1/kernel/events/uprobes.c	2015-04-24 00:57:20.307510867 +0530
+--- linux-vanilla/kernel/events/uprobes.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 195,201 ****
+  	flush_cache_page(vma, addr, pte_pfn(*ptep));
+  	ptep_clear_flush(vma, addr, ptep);
+  	set_pte_at_notify(mm, addr, ptep, mk_pte(kpage, vma->vm_page_prot));
+- 	kpage->tsk = current;
+  
+  	page_remove_rmap(page);
+  	if (!page_mapped(page))
+--- 195,200 ----
+Only in linux-3.18.1/kernel/time: hz.bc
+Only in linux-3.18.1/kernel/time: .hz.bc.cmd
+Only in linux-3.18.1/kernel/time: timeconst.h
+Only in linux-3.18.1/kernel/time: .timeconst.h.cmd
+Only in linux-3.18.1/lib: crc32table.h
+Only in linux-3.18.1/lib: gen_crc32table
+Only in linux-3.18.1/lib: .gen_crc32table.cmd
+Only in linux-3.18.1/lib: lib.a
+Only in linux-3.18.1/lib: .lib.a.cmd
+Only in linux-3.18.1/lib: oid_registry_data.c
+Only in linux-3.18.1: mem_pri
+Only in linux-3.18.1: .missing-syscalls.d
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/huge_memory.c linux-vanilla/mm/huge_memory.c
+*** linux-3.18.1/mm/huge_memory.c	2015-04-24 00:58:31.123511389 +0530
+--- linux-vanilla/mm/huge_memory.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 1045,1051 ****
+  	for (i = 0; i < HPAGE_PMD_NR; i++, haddr += PAGE_SIZE) {
+  		pte_t *pte, entry;
+  		entry = mk_pte(pages[i], vma->vm_page_prot);
+- 		pages[i]->tsk = current;
+  		entry = maybe_mkwrite(pte_mkdirty(entry), vma);
+  		memcg = (void *)page_private(pages[i]);
+  		set_page_private(pages[i], 0);
+--- 1045,1050 ----
+***************
+*** 1802,1808 ****
+  			 * a PROT_NONE VMA by accident.
+  			 */
+  			entry = mk_pte(page + i, vma->vm_page_prot);
+- 			(page + i)->tsk = current;
+  			entry = maybe_mkwrite(pte_mkdirty(entry), vma);
+  			if (!pmd_write(*pmd))
+  				entry = pte_wrprotect(entry);
+--- 1801,1806 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/ksm.c linux-vanilla/mm/ksm.c
+*** linux-3.18.1/mm/ksm.c	2015-04-24 01:00:53.731512441 +0530
+--- linux-vanilla/mm/ksm.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 962,968 ****
+  	flush_cache_page(vma, addr, pte_pfn(*ptep));
+  	ptep_clear_flush(vma, addr, ptep);
+  	set_pte_at_notify(mm, addr, ptep, mk_pte(kpage, vma->vm_page_prot));
+- 	kpage->tsk = current;
+  
+  	page_remove_rmap(page);
+  	if (!page_mapped(page))
+--- 962,967 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/memory.c linux-vanilla/mm/memory.c
+*** linux-3.18.1/mm/memory.c	2015-04-24 01:00:29.199512260 +0530
+--- linux-vanilla/mm/memory.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 1500,1506 ****
+  	inc_mm_counter_fast(mm, MM_FILEPAGES);
+  	page_add_file_rmap(page);
+  	set_pte_at(mm, addr, pte, mk_pte(page, prot));
+- 	page->tsk = current;
+  
+  	retval = 0;
+  	pte_unmap_unlock(pte, ptl);
+--- 1500,1505 ----
+***************
+*** 2228,2234 ****
+  			inc_mm_counter_fast(mm, MM_ANONPAGES);
+  		flush_cache_page(vma, address, pte_pfn(orig_pte));
+  		entry = mk_pte(new_page, vma->vm_page_prot);
+- 		new_page->tsk = current;
+  		entry = maybe_mkwrite(pte_mkdirty(entry), vma);
+  		/*
+  		 * Clear the pte entry and flush it first, before updating the
+--- 2227,2232 ----
+***************
+*** 2525,2531 ****
+  	inc_mm_counter_fast(mm, MM_ANONPAGES);
+  	dec_mm_counter_fast(mm, MM_SWAPENTS);
+  	pte = mk_pte(page, vma->vm_page_prot);
+- 	page->tsk = current;
+  	if ((flags & FAULT_FLAG_WRITE) && reuse_swap_page(page)) {
+  		pte = maybe_mkwrite(pte_mkdirty(pte), vma);
+  		flags &= ~FAULT_FLAG_WRITE;
+--- 2523,2528 ----
+***************
+*** 2670,2676 ****
+  		goto oom_free_page;
+  
+  	entry = mk_pte(page, vma->vm_page_prot);
+- 	page->tsk = current;
+  	if (vma->vm_flags & VM_WRITE)
+  		entry = pte_mkwrite(pte_mkdirty(entry));
+  
+--- 2667,2672 ----
+***************
+*** 2758,2764 ****
+  
+  	flush_icache_page(vma, page);
+  	entry = mk_pte(page, vma->vm_page_prot);
+- 	page->tsk = current;
+  	if (write)
+  		entry = maybe_mkwrite(pte_mkdirty(entry), vma);
+  	else if (pte_file(*pte) && pte_file_soft_dirty(*pte))
+--- 2754,2759 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/migrate.c linux-vanilla/mm/migrate.c
+*** linux-3.18.1/mm/migrate.c	2015-04-24 01:00:43.687512367 +0530
+--- linux-vanilla/mm/migrate.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 144,150 ****
+  
+  	get_page(new);
+  	pte = pte_mkold(mk_pte(new, vma->vm_page_prot));
+- 	new->tsk = current;
+  	if (pte_swp_soft_dirty(*ptep))
+  		pte = pte_mksoft_dirty(pte);
+  
+--- 144,149 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/page_alloc.c linux-vanilla/mm/page_alloc.c
+*** linux-3.18.1/mm/page_alloc.c	2015-05-02 03:29:26.992801998 +0530
+--- linux-vanilla/mm/page_alloc.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 2093,2099 ****
+  		 * for !PFMEMALLOC purposes.
+  		 */
+  		page->pfmemalloc = !!(alloc_flags & ALLOC_NO_WATERMARKS);
+- 		page->tsk = current;
+  		return page;
+  	}
+  
+--- 2093,2098 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/swapfile.c linux-vanilla/mm/swapfile.c
+*** linux-3.18.1/mm/swapfile.c	2015-04-24 01:01:32.295512725 +0530
+--- linux-vanilla/mm/swapfile.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 1120,1126 ****
+  	get_page(page);
+  	set_pte_at(vma->vm_mm, addr, pte,
+  		   pte_mkold(mk_pte(page, vma->vm_page_prot)));
+- 	page->tsk = current;
+  	if (page == swapcache) {
+  		page_add_anon_rmap(page, vma, addr);
+  		mem_cgroup_commit_charge(page, memcg, true);
+--- 1120,1125 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/vmalloc.c linux-vanilla/mm/vmalloc.c
+*** linux-3.18.1/mm/vmalloc.c	2015-04-24 01:01:53.283512880 +0530
+--- linux-vanilla/mm/vmalloc.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 130,136 ****
+  		if (WARN_ON(!page))
+  			return -ENOMEM;
+  		set_pte_at(&init_mm, addr, pte, mk_pte(page, prot));
+- 		page->tsk = current;
+  		(*nr)++;
+  	} while (pte++, addr += PAGE_SIZE, addr != end);
+  	return 0;
+--- 130,135 ----
+diff -crbBwaZE --strip-trailing-cr -X exclude.pats linux-3.18.1/mm/vmscan.c linux-vanilla/mm/vmscan.c
+*** linux-3.18.1/mm/vmscan.c	2015-04-25 01:16:37.021883631 +0530
+--- linux-vanilla/mm/vmscan.c	2014-12-16 23:09:45.000000000 +0530
+***************
+*** 796,810 ****
+  		mapping->a_ops->is_dirty_writeback(page, dirty, writeback);
+  }
+  
+- /**
+-  * Log corresponding process id of the page evicted.
+-  * Note that we cannot use current as page may also be evicted by
+-  * periodic kernel thread, apart from during page fault when it
+-  * may be evicted by the process itself
+-  */
+- int (*reg_freed_page_tsk)(struct page* pg) = NULL;
+- EXPORT_SYMBOL(reg_freed_page_tsk);
+- 
+  /*
+   * shrink_page_list() returns the number of reclaimed pages
+   */
+--- 796,801 ----
+***************
+*** 1113,1122 ****
+  free_it:
+  		nr_reclaimed++;
+  
+- 		if(reg_freed_page_tsk){
+- 			(*reg_freed_page_tsk)(page);
+- 		}
+- 
+  		/*
+  		 * Is there need to periodically free_page_list? It would
+  		 * appear not as the counts should be low
+--- 1104,1109 ----
+***************
+*** 3741,3749 ****
+  }
+  #endif
+  
+- int (*get_prio_pid)(void) = NULL;
+- EXPORT_SYMBOL(get_prio_pid);
+- 
+  /*
+   * page_evictable - test whether a page is evictable
+   * @page: the page to test
+--- 3728,3733 ----
+***************
+*** 3758,3769 ****
+   */
+  int page_evictable(struct page *page)
+  {
+- 	if(get_prio_pid){
+- 		int pid = (*get_prio_pid)();
+- 		if(page->tsk->pid == pid){
+- 			return 0;
+- 		}
+- 	}
+  	return !mapping_unevictable(page_mapping(page)) && !PageMlocked(page);
+  }
+  
+--- 3742,3747 ----
+Only in linux-3.18.1/net/ipv4/netfilter: iptable_nat.ko
+Only in linux-3.18.1/net/ipv4/netfilter: .iptable_nat.ko.cmd
+Only in linux-3.18.1/net/ipv4/netfilter: iptable_nat.mod.c
+Only in linux-3.18.1/net/ipv4/netfilter: ipt_MASQUERADE.ko
+Only in linux-3.18.1/net/ipv4/netfilter: .ipt_MASQUERADE.ko.cmd
+Only in linux-3.18.1/net/ipv4/netfilter: ipt_MASQUERADE.mod.c
+Only in linux-3.18.1/net/ipv4/netfilter: nf_log_arp.ko
+Only in linux-3.18.1/net/ipv4/netfilter: .nf_log_arp.ko.cmd
+Only in linux-3.18.1/net/ipv4/netfilter: nf_log_arp.mod.c
+Only in linux-3.18.1/net/ipv4/netfilter: nf_log_ipv4.ko
+Only in linux-3.18.1/net/ipv4/netfilter: .nf_log_ipv4.ko.cmd
+Only in linux-3.18.1/net/ipv4/netfilter: nf_log_ipv4.mod.c
+Only in linux-3.18.1/net/ipv4/netfilter: nf_nat_ipv4.ko
+Only in linux-3.18.1/net/ipv4/netfilter: .nf_nat_ipv4.ko.cmd
+Only in linux-3.18.1/net/ipv4/netfilter: nf_nat_ipv4.mod.c
+Only in linux-3.18.1/net/ipv4/netfilter: nf_nat_masquerade_ipv4.ko
+Only in linux-3.18.1/net/ipv4/netfilter: .nf_nat_masquerade_ipv4.ko.cmd
+Only in linux-3.18.1/net/ipv4/netfilter: nf_nat_masquerade_ipv4.mod.c
+Only in linux-3.18.1/net/ipv6/netfilter: nf_log_ipv6.ko
+Only in linux-3.18.1/net/ipv6/netfilter: .nf_log_ipv6.ko.cmd
+Only in linux-3.18.1/net/ipv6/netfilter: nf_log_ipv6.mod.c
+Only in linux-3.18.1/net/netfilter: nf_log_common.ko
+Only in linux-3.18.1/net/netfilter: .nf_log_common.ko.cmd
+Only in linux-3.18.1/net/netfilter: nf_log_common.mod.c
+Only in linux-3.18.1/net/netfilter: nf_nat_ftp.ko
+Only in linux-3.18.1/net/netfilter: .nf_nat_ftp.ko.cmd
+Only in linux-3.18.1/net/netfilter: nf_nat_ftp.mod.c
+Only in linux-3.18.1/net/netfilter: nf_nat_irc.ko
+Only in linux-3.18.1/net/netfilter: .nf_nat_irc.ko.cmd
+Only in linux-3.18.1/net/netfilter: nf_nat_irc.mod.c
+Only in linux-3.18.1/net/netfilter: nf_nat.ko
+Only in linux-3.18.1/net/netfilter: .nf_nat.ko.cmd
+Only in linux-3.18.1/net/netfilter: nf_nat.mod.c
+Only in linux-3.18.1/net/netfilter: nf_nat_sip.ko
+Only in linux-3.18.1/net/netfilter: .nf_nat_sip.ko.cmd
+Only in linux-3.18.1/net/netfilter: nf_nat_sip.mod.c
+Only in linux-3.18.1/net/netfilter: xt_LOG.ko
+Only in linux-3.18.1/net/netfilter: .xt_LOG.ko.cmd
+Only in linux-3.18.1/net/netfilter: xt_LOG.mod.c
+Only in linux-3.18.1/net/netfilter: xt_mark.ko
+Only in linux-3.18.1/net/netfilter: .xt_mark.ko.cmd
+Only in linux-3.18.1/net/netfilter: xt_mark.mod.c
+Only in linux-3.18.1/net/netfilter: xt_nat.ko
+Only in linux-3.18.1/net/netfilter: .xt_nat.ko.cmd
+Only in linux-3.18.1/net/netfilter: xt_nat.mod.c
+Only in linux-3.18.1/security/selinux: av_permissions.h
+Only in linux-3.18.1/security/selinux: flask.h
+Only in linux-3.18.1/security/selinux: .flask.h.cmd
+Only in linux-3.18.1: System.map
+Only in linux-3.18.1: .tmp_System.map
+Only in linux-3.18.1: .tmp_versions
+Only in linux-3.18.1: .tmp_vmlinux1
+Only in linux-3.18.1: .tmp_vmlinux2
+Only in linux-3.18.1/usr: gen_init_cpio
+Only in linux-3.18.1/usr: .gen_init_cpio.cmd
+Only in linux-3.18.1/usr: .initramfs_data.cpio.d
+Only in linux-3.18.1/usr: initramfs_data.cpio.gz
+Only in linux-3.18.1/usr: .initramfs_data.cpio.gz.cmd
+Only in linux-3.18.1: vmlinux
+Only in linux-3.18.1: .vmlinux.cmd
